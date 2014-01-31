@@ -1,0 +1,65 @@
+<apex:page showHeader="false" standardStylesheets="false" applyBodyTag="false">
+<script type="text/javascript" src="{!URLFOR($Resource.forcetk_sobject, 'jquery-2.1.0.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.forcetk_sobject, 'forcetk.mobilesdk.custom.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.forcetk_sobject, 'forcetk.sobject.js')}"></script>
+<script type="text/javascript">
+	(function ($) {
+		var API_VERSION = "v29.0";
+
+		var init = function () {
+			var client = new forcetk.Client();
+			client.setSessionToken("{!GETSESSIONID()}", API_VERSION);
+			return forcetk.SObject.initialize(client);
+		};
+
+		var main = function () {
+			forcetk.SObject.Account.query({
+				fields: [
+					"Name",
+					"LastModifiedBy.Name",
+					"LastModifiedBy.CreatedDate",
+					{
+						CreatedBy: ["Name", "CreatedDate"]
+					},
+					new forcetk.SOQL({
+						type: "Contacts",
+						// fields: ["Name"],
+						where: new forcetk.SOQL.Or([
+							["Account.CreatedDate", "<", new forcetk.SOQL.Date("TODAY")],
+							["Name", "!=", "test"]
+						]),
+						limit: 10
+					})
+				],
+				where: new forcetk.SOQL.And([
+					["LastModifiedDate", "<", new forcetk.SOQL.Date("TODAY")]
+				]),
+				orderBy: ["Name"],
+				limit: 10,
+				offset: 2
+			})
+			.done(function (records) {
+				var $ul = $("#accounts");
+				records.forEach(function (account) {
+					var $li = $("<li>").text(account.Name).appendTo($ul);
+					if (!account.Contacts) return;
+					var $cul = $("<ul>").appendTo($li);
+					account.Contacts.forEach(function (contact) {
+						$("<li>").text(contact.Name).appendTo($cul);
+					});
+				});
+			}).fail(function (err) {
+				var msg = err.responseJSON[0].message;
+				alert("SOQL query error!" + msg);
+			});
+		};
+
+		$(function() {
+			init().done(main);
+		});
+	})(jQuery);
+</script>
+<body>
+	<ul id="accounts"></ul>
+</body>
+</apex:page>
