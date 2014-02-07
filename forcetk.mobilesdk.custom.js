@@ -349,7 +349,12 @@ if (forcetk.Client === undefined) {
                 }
             }
         })).then(
-            function (response) {
+            function (response, status, req) {
+                 var limitInfo = req.getResponseHeader("Sforce-Limit-Info");
+                 if (limitInfo && limitInfo.match(/api-usage=(\d+)\/(\d+)/)) {
+                    that.apiCalls = Math.max(RegExp.$1 - 0, that.apiCalls);
+                    that.apiLimit = RegExp.$2 - 0;
+                 }
                 return response;
             },
             function (jqXHR, textStatus, errorThrown) {

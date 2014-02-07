@@ -11,7 +11,6 @@ Force.com-JavaScript-SObject-ToolkitはJavaScriptからForce.comのオブジェ�
 ## forcetk.mobilesdk.jsのカスタム部分
 * 非同期メソッド系は全てjQuery.Deferredを利用した形に全て変更 (全てのsuccess, error引数が取り払われています)
 * 非同期/同期通信をasyncAjaxで設定する形になっていたものを、jQuery#ajaxと同様にasyncプロパティで呼び出し毎に設定できるように変更
-* 
 * Visualforce及びChrome Extention対応
 * 全体的に自分好みに整形
 
