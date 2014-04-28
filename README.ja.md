@@ -11,7 +11,7 @@ Force.com-JavaScript-SObject-ToolkitはJavaScriptからForce.comのオブジェ�
 ## forcetk.mobilesdk.jsのカスタム部分
 * 非同期メソッド系は全てjQuery.Deferredを利用した形に全て変更 (全てのsuccess, error引数が取り払われています)
 * 非同期/同期通信をasyncAjaxで設定する形になっていたものを、jQuery#ajaxと同様にasyncプロパティで呼び出し毎に設定できるように変更
-* Visualforce及びChrome Extention対応
+* Visualforce及びChrome Extension対応
 * 全体的に自分好みに整形
 
 ## 特徴
@@ -22,7 +22,7 @@ Force.com-JavaScript-SObject-ToolkitはJavaScriptからForce.comのオブジェ�
 * DateやDatetime, Boolean等はそのままJavaScriptのDateやBooleanで扱える (相互の変換を意識する必要が無い)
 * 初期化時にsObjectのメタデータ取得しているため、各sObjectに対応するModelの準備をする必要が無い
 * 名前空間プレフィックスをシンプルに扱うことが可能 (現在テスト中)
-* Visualforce, Phonegapアプリケーション, Chrome Extentionで利用可能
+* Visualforce, Phonegapアプリケーション, Chrome Extensionで利用可能
 
 ## 利用方法
 
@@ -315,15 +315,15 @@ Having
 ## サンプル
 各サンプルはAccount及びAccountに紐づくContact情報を取得し表示するアプリケーションです。各サンプル共main関数内は同様の内容になっています。
 
-また、下記サンプルでChrome ExtentionとPhonegapではOAuthを行うために、exampleに同梱の
+また、下記サンプルでChrome ExtensionとPhonegapではOAuthを行うために、exampleに同梱の
 
 * oauth2.js
 * oauth2_salesforce.js
 
-を利用しています。これは、Chrome Extention及びPhonegapでSalesforceの認可を得るためのライブラリです。
+を利用しています。これは、Chrome Extension及びPhonegapでSalesforceの認可を得るためのライブラリです。
 
 ※ Phonegapは3.1で動作の確認をしておりInAppBrowserのプラグインが入っている事が必須になります。
-※ Chrome Extentionの場合は個別に`manifest.json`も用意する必要があります
+※ Chrome Extensionの場合は個別に`manifest.json`も用意する必要があります
 
 ### Visualforce
 sample.page:
@@ -394,7 +394,7 @@ sample.page:
 	</body>
 	</apex:page>
 
-## Chrome Extention / Phonegap
+## Chrome Extension / Phonegap
 index.html:
 
 	<!DOCTYPE html>
@@ -497,7 +497,7 @@ index.js:
 
 次にサンプルのindex.pageをコピー&ペーストして完了です。
 
-### Chrome Extention
+### Chrome Extension
 
 Chromeで`chrome://extensions/`を開き`パッケージ化されていない拡張機能を読み込む...`を選択する。サンプルのchrome_extensionを選択しアプリケーションのインストールをする。起動方法は、`chrome://apps/`から`sobject.js`というアプリケーション選択する。
 
