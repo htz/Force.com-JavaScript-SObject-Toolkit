@@ -52,7 +52,7 @@ Force.com-JavaScript-SObject-ToolkitはJavaScriptからForce.comのオブジェ�
 		});
 
 ### レコードの作成
-	var account = new SObject.Account({
+	var account = new forcetk.SObject.Account({
 		Name: 'テストアカウント'
 	});
 	account.Description = 'プロパティに直接追加も可能';
