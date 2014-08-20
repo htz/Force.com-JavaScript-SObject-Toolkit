@@ -1185,7 +1185,7 @@
 		};
 
 		SObjectSelf.describeFields = function () {
-			return SObjectSelf.describe()
+			return SObjectSelf.describe(false)
 			.then(function (result) {
 				var res = _.reduce(result.fields, function (map, f) {
 					var name = f.name;
