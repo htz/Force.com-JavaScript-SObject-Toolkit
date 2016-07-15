@@ -234,7 +234,7 @@
 								var nextSobject = SObject.prefix[RegExp.$1][RegExp.$2];
 							}
 							if (!nextSobject) {
-								var nextSobject = SObject[desc.referenceTo[0]];								
+								var nextSobject = SObject[desc.referenceTo[0]];
 							}
 							_.each(val, function (f0) {
 								if (_.isObject(f0)) {
@@ -507,7 +507,7 @@
 			if (desc.type === "datetime") {
 				return Util.date2soqlDatetime(v);
 			} else {
-				return Util.date2soqlDate(v.value);
+				return Util.date2soqlDate(v);
 			}
 		}
 		// TODO: location v30.0
